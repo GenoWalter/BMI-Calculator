@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+
 import './index.css'
 
 function App() {
@@ -18,14 +19,14 @@ function App() {
     if (weight === 0 || height === 0) {
       alert('Please enter a valid weight and height')
     } else {
-      let bmi = (weight / (height/100 * height/10) )
-      setBmi(bmi.toFixed(1))
+      let bmi = (weight / (height/100 * height/100) )
+      setBmi(bmi.toFixed(2))
 
       // Logic for message
 
-      if (bmi < 2.5) {
+      if (bmi < 18.5) {
         setMessage('You are underweight')
-      } else if (bmi >= 2.5 && bmi < 3.0) {
+      } else if (bmi >= 18.5 && bmi < 24.9) {
         setMessage('You are a healthy weight')
       } else {
         setMessage('You are overweight')
@@ -39,9 +40,9 @@ function App() {
   if (bmi < 1) {
     imgSrc = null
   } else {
-    if(bmi < 2.5) {
+    if(bmi < 25) {
       imgSrc = require('../src/assets/underweight.png')
-    } else if (bmi >= 2.5 && bmi < 3.0) {
+    } else if (bmi >= 25 && bmi < 30) {
       imgSrc = require('../src/assets/healthy.png')
     } else {
       imgSrc = require('../src/assets/overweight.png')
@@ -59,11 +60,11 @@ function App() {
         <h2 className='center'>BMI Calculator</h2>
         <form onSubmit={calcBmi}>
           <div>
-            <label>Weight (lbs)</label>
+            <label>Weight (kg)</label>
             <input value={weight} onChange={(e) => setWeight(e.target.value)} />
           </div>
           <div>
-            <label>Height ()</label>
+            <label>Height (cm)</label>
             <input value={height} onChange={(event) => setHeight(event.target.value)} />
           </div>
           <div>
